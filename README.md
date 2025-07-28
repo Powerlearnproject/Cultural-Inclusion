@@ -16,4 +16,9 @@ Develop a data management tool that allows HEVA to store data collected from var
 git clone https://github.com/Powerlearnproject/Cultural-Inclusion.git
 ```
 
-## Happy Coding!
+Navigate to the working directory
+``` bash
+cd Cultural-Inclusion
+```
+
+## Happy Hacking!
