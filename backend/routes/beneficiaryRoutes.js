@@ -1,16 +1,31 @@
 import express from 'express';
+import {
+  getBeneficiaries,
+  createBeneficiary,
+  getBeneficiaryById,
+  updateBeneficiary,
+  deleteBeneficiary,
+  getBeneficiaryAnalytics
+} from '../controllers/beneficiaryController.js';
+
 const router = express.Router();
 
-// TODO: Add controller imports
+// GET /api/beneficiaries - Get all beneficiaries with filtering
+router.get('/', getBeneficiaries);
 
-router.get('/', (req, res) => {
-  res.send('Get all beneficiaries');
-});
+// POST /api/beneficiaries - Create new beneficiary
+router.post('/', createBeneficiary);
 
-router.post('/', (req, res) => {
-  res.send('Create beneficiary');
-});
+// GET /api/beneficiaries/analytics - Get analytics data
+router.get('/analytics', getBeneficiaryAnalytics);
 
-// Add more routes as needed
+// GET /api/beneficiaries/:id - Get beneficiary by ID
+router.get('/:id', getBeneficiaryById);
+
+// PUT /api/beneficiaries/:id - Update beneficiary
+router.put('/:id', updateBeneficiary);
+
+// DELETE /api/beneficiaries/:id - Delete beneficiary
+router.delete('/:id', deleteBeneficiary);
 
 export default router;

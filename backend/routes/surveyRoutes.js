@@ -1,16 +1,31 @@
 import express from 'express';
+import {
+  getSurveys,
+  createSurvey,
+  getSurveyById,
+  submitSurveyResponse,
+  getSurveyAnalytics,
+  getSurveyResponses
+} from '../controllers/surveyController.js';
+
 const router = express.Router();
 
-// TODO: Add controller imports
+// GET /api/surveys - Get all surveys
+router.get('/', getSurveys);
 
-router.get('/', (req, res) => {
-  res.send('Get all surveys');
-});
+// POST /api/surveys - Create new survey
+router.post('/', createSurvey);
 
-router.post('/', (req, res) => {
-  res.send('Create survey');
-});
+// GET /api/surveys/:id - Get survey by ID
+router.get('/:id', getSurveyById);
 
-// Add more routes as needed
+// GET /api/surveys/:id/analytics - Get survey analytics
+router.get('/:id/analytics', getSurveyAnalytics);
+
+// POST /api/surveys/responses - Submit survey response
+router.post('/responses', submitSurveyResponse);
+
+// GET /api/surveys/responses - Get all survey responses
+router.get('/responses', getSurveyResponses);
 
 export default router;

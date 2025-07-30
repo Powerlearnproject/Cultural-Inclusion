@@ -1,0 +1,374 @@
+.cohorts-container {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.cohorts-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.cohorts-header h1 {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.cohorts-header p {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Cohort Selection */
+.cohort-selection {
+  margin-bottom: 3rem;
+}
+
+.cohort-selection h2 {
+  color: #2c3e50;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.cohort-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.cohort-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cohort-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: #3498db;
+}
+
+.cohort-card.active {
+  border-color: #3498db;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: white;
+}
+
+.cohort-card.active .cohort-info h3,
+.cohort-card.active .cohort-info p {
+  color: white;
+}
+
+.cohort-icon {
+  font-size: 2.5rem;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(52, 152, 219, 0.1);
+  flex-shrink: 0;
+}
+
+.cohort-card.active .cohort-icon {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.cohort-info {
+  flex: 1;
+}
+
+.cohort-info h3 {
+  color: #2c3e50;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+}
+
+.cohort-info p {
+  color: #7f8c8d;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.cohort-success {
+  text-align: right;
+}
+
+.success-rate {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #27ae60;
+}
+
+.cohort-card.active .success-rate {
+  color: white;
+}
+
+.success-label {
+  font-size: 0.8rem;
+  color: #7f8c8d;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.cohort-card.active .success-label {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Cohort Details */
+.cohort-details {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cohort-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #ecf0f1;
+}
+
+.cohort-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cohort-icon-large {
+  font-size: 3rem;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(52, 152, 219, 0.1);
+}
+
+.cohort-title h2 {
+  color: #2c3e50;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+}
+
+.cohort-title p {
+  color: #7f8c8d;
+  margin: 0;
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+.cohort-stats-overview {
+  display: flex;
+  gap: 2rem;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #3498db;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Metrics Grid */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.metric-card {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid #e9ecef;
+}
+
+.metric-card h3 {
+  color: #2c3e50;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+}
+
+.metric-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.metric-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.metric-row:last-child {
+  border-bottom: none;
+}
+
+.metric-row span:first-child {
+  color: #7f8c8d;
+  font-weight: 500;
+}
+
+.metric-value {
+  color: #2c3e50;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Recent Activities */
+.recent-activities {
+  margin-top: 2rem;
+}
+
+.recent-activities h3 {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.activity-item:hover {
+  background: #e9ecef;
+  border-color: #3498db;
+}
+
+.activity-icon {
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(52, 152, 219, 0.1);
+  flex-shrink: 0;
+}
+
+.activity-content h4 {
+  color: #2c3e50;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+}
+
+.activity-content p {
+  color: #7f8c8d;
+  margin: 0 0 0.25rem 0;
+  line-height: 1.5;
+}
+
+.activity-time {
+  color: #95a5a6;
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .cohort-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .cohort-stats-overview {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .cohorts-container {
+    padding: 1rem;
+  }
+  
+  .cohort-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .cohort-title {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .cohorts-header h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .cohort-card,
+  .activity-item {
+    transition: none;
+  }
+  
+  .cohort-card:hover {
+    transform: none;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .cohort-card,
+  .cohort-details,
+  .metric-card,
+  .activity-item {
+    border: 2px solid #000;
+  }
+} 

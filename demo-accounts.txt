@@ -1,0 +1,54 @@
+🔐 INCLUSITRACK - DEMO ACCOUNTS
+================================
+
+🔑 LOGIN CREDENTIALS
+===================
+
+👑 ADMINISTRATOR ACCOUNT
+Email: admin@heva.org
+Password: admin123
+Role: Full system access
+Permissions: All features, user management, analytics
+
+📝 DATA ENTRY OFFICER ACCOUNT  
+Email: officer@heva.org
+Password: officer123
+Role: Data entry and reporting
+Permissions: Data input, view reports, basic analytics
+
+🔒 SECURITY FEATURES
+===================
+✅ JWT Token Authentication
+✅ Role-based Access Control  
+✅ Password Encryption (bcrypt)
+✅ Protected API Endpoints
+✅ Session Management
+✅ Secure Routes
+
+👥 USER ROLES EXPLAINED
+=======================
+👑 ADMINISTRATOR:
+- Full system access
+- User management
+- All analytics and reports
+- System configuration
+- Data export capabilities
+
+📝 DATA ENTRY OFFICER:
+- Input beneficiary data
+- Submit survey responses
+- View assigned reports
+- Basic analytics access
+- CSV upload functionality
+
+🌐 ACCESS URL
+============
+Frontend: http://localhost:5173
+Backend API: http://localhost:5002
+
+🎯 FOR HACKATHON DEMO
+=====================
+1. Use admin account for full demo
+2. Show role switching with data entry account
+3. Demonstrate security features
+4. Highlight data protection for vulnerable groups 
