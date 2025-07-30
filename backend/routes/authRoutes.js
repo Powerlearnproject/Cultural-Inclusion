@@ -1,16 +1,13 @@
 import express from 'express';
+import { registerUser, loginUser, getUserProfile, verifyToken } from '../controllers/authController.js';
+
 const router = express.Router();
 
-// TODO: Add controller imports
+// Public routes
+router.post('/register', registerUser);
+router.post('/login', loginUser);
 
-router.post('/register', (req, res) => {
-  // Registration logic
-  res.send('Register endpoint');
-});
-
-router.post('/login', (req, res) => {
-  // Login logic
-  res.send('Login endpoint');
-});
+// Protected routes
+router.get('/profile', verifyToken, getUserProfile);
 
 export default router;

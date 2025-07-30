@@ -58,7 +58,8 @@ const Reports = () => {
       console.log(`Generating ${selectedReport} report in ${format} format`)
       
       // In real implementation, this would call the backend API
-      const response = await fetch(`/api/reports/${selectedReport}`, {
+      const API_BASE_URL = 'http://localhost:5002'
+      const response = await fetch(`${API_BASE_URL}/api/reports/${selectedReport}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

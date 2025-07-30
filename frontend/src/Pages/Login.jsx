@@ -33,12 +33,13 @@ const Login = ({ onLogin }) => {
         return
       }
 
+      const API_BASE_URL = 'http://localhost:5002'
       const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register'
       const payload = isLogin 
         ? { email: formData.email, password: formData.password }
         : { name: formData.name, email: formData.email, password: formData.password, role: formData.role }
 
-      const response = await fetch(endpoint, {
+      const response = await fetch(`${API_BASE_URL}${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

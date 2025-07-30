@@ -95,7 +95,8 @@ const DataEntry = () => {
 
   const handleSubmit = async (section) => {
     try {
-      const response = await fetch(`/api/${section}`, {
+      const API_BASE_URL = 'http://localhost:5002'
+      const response = await fetch(`${API_BASE_URL}/api/${section}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -168,7 +169,8 @@ const DataEntry = () => {
       formData.append('csvFile', csvFile)
       formData.append('type', activeTab)
 
-      const response = await fetch('/api/upload-csv', {
+      const API_BASE_URL = 'http://localhost:5002'
+      const response = await fetch(`${API_BASE_URL}/api/upload-csv`, {
         method: 'POST',
         body: formData
       })
