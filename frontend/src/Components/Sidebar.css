@@ -1,0 +1,48 @@
+.sidebar {
+  width: 220px;
+  background-color: #fff;
+  padding: 1.5rem;
+  border-right: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar h2 {
+  color: #5e2ca5;
+  font-size: 1.2rem;
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sidebar li.active,
+.sidebar li:hover {
+  background-color: #f0e6ff;
+  color: #5e2ca5;
+  font-weight: 600;
+}
+
+.impact-card {
+  margin-top: auto;
+  background: linear-gradient(135deg, #d946ef, #7c3aed);
+  color: white;
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+}
