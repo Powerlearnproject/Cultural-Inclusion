@@ -8,10 +8,26 @@ const Login = ({ onLogin }) => {
     email: '',
     password: '',
     confirmPassword: '',
-    role: 'data_entry'
+    role: 'beneficiary',
+    phoneNumber: '',
+    location: '',
+    vulnerabilityFactors: []
   })
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
+
+  const vulnerabilityOptions = [
+    'Refugee/Displaced',
+    'LGBTQ+',
+    'Person with Disability',
+    'Low Income',
+    'Low Literacy',
+    'Creative/Artist',
+    'Rural Community',
+    'Youth (18-25)',
+    'Single Parent',
+    'Unemployed'
+  ]
 
   const handleInputChange = (field, value) => {
     setFormData(prev => ({
@@ -19,6 +35,15 @@ const Login = ({ onLogin }) => {
       [field]: value
     }))
     setError('')
+  }
+
+  const handleArrayChange = (field, value, action) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: action === 'add' 
+        ? [...prev[field], value]
+        : prev[field].filter(item => item !== value)
+    }))
   }
 
   const handleSubmit = async (e) => {
@@ -35,9 +60,21 @@ const Login = ({ onLogin }) => {
 
       const API_BASE_URL = 'http://localhost:5002'
       const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register'
-      const payload = isLogin 
-        ? { email: formData.email, password: formData.password }
-        : { name: formData.name, email: formData.email, password: formData.password, role: formData.role }
+      
+      let payload
+      if (isLogin) {
+        payload = { email: formData.email, password: formData.password }
+      } else {
+        payload = {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+          role: formData.role,
+          phoneNumber: formData.phoneNumber,
+          location: formData.location,
+          vulnerabilityFactors: formData.vulnerabilityFactors
+        }
+      }
 
       const response = await fetch(`${API_BASE_URL}${endpoint}`, {
         method: 'POST',
@@ -83,7 +120,7 @@ const Login = ({ onLogin }) => {
               <div className="logo-icon">🌍</div>
               <div className="logo-text">
                 <h1>InclusiTrack</h1>
-                <p>Cultural Inclusion Data Management</p>
+                <p>HEVA Cultural Inclusion Data Management</p>
               </div>
             </div>
             <div className="mission-statement">
@@ -111,17 +148,84 @@ const Login = ({ onLogin }) => {
 
           <form onSubmit={handleSubmit} className="auth-form">
             {!isLogin && (
-              <div className="form-group">
-                <label>Full Name *</label>
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => handleInputChange('name', e.target.value)}
-                  required={!isLogin}
-                  placeholder="Enter your full name"
-                  className="form-input"
-                />
-              </div>
+              <>
+                <div className="form-group">
+                  <label>Full Name *</label>
+                  <input
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => handleInputChange('name', e.target.value)}
+                    required={!isLogin}
+                    placeholder="Enter your full name"
+                    className="form-input"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Role *</label>
+                  <select
+                    value={formData.role}
+                    onChange={(e) => handleInputChange('role', e.target.value)}
+                    required={!isLogin}
+                    className="form-select"
+                  >
+                    <option value="beneficiary">Beneficiary</option>
+                    <option value="officer">Field Officer</option>
+                  </select>
+                  <small className="form-help">
+                    {formData.role === 'officer' 
+                      ? 'Field Officers can register beneficiaries and track data in the field'
+                      : 'Beneficiaries can access support programs and track their status'
+                    }
+                  </small>
+                </div>
+
+                <div className="form-group">
+                  <label>Phone Number</label>
+                  <input
+                    type="tel"
+                    value={formData.phoneNumber}
+                    onChange={(e) => handleInputChange('phoneNumber', e.target.value)}
+                    placeholder="Enter phone number"
+                    className="form-input"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Location</label>
+                  <input
+                    type="text"
+                    value={formData.location}
+                    onChange={(e) => handleInputChange('location', e.target.value)}
+                    placeholder="City, Region"
+                    className="form-input"
+                  />
+                </div>
+
+                {formData.role === 'beneficiary' && (
+                  <div className="form-group">
+                    <label>Vulnerability Factors</label>
+                    <div className="checkbox-grid">
+                      {vulnerabilityOptions.map(option => (
+                        <label key={option} className="checkbox-label">
+                          <input
+                            type="checkbox"
+                            checked={formData.vulnerabilityFactors.includes(option)}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                handleArrayChange('vulnerabilityFactors', option, 'add')
+                              } else {
+                                handleArrayChange('vulnerabilityFactors', option, 'remove')
+                              }
+                            }}
+                          />
+                          {option}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </>
             )}
 
             <div className="form-group">
@@ -150,33 +254,18 @@ const Login = ({ onLogin }) => {
             </div>
 
             {!isLogin && (
-              <>
-                <div className="form-group">
-                  <label>Confirm Password *</label>
-                  <input
-                    type="password"
-                    value={formData.confirmPassword}
-                    onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
-                    required={!isLogin}
-                    placeholder="Confirm your password"
-                    minLength="6"
-                    className="form-input"
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>Role *</label>
-                  <select
-                    value={formData.role}
-                    onChange={(e) => handleInputChange('role', e.target.value)}
-                    required={!isLogin}
-                    className="form-select"
-                  >
-                    <option value="data_entry">Data Entry Officer</option>
-                    <option value="admin">Administrator</option>
-                  </select>
-                </div>
-              </>
+              <div className="form-group">
+                <label>Confirm Password *</label>
+                <input
+                  type="password"
+                  value={formData.confirmPassword}
+                  onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
+                  required={!isLogin}
+                  placeholder="Confirm your password"
+                  minLength="6"
+                  className="form-input"
+                />
+              </div>
             )}
 
             {error && (

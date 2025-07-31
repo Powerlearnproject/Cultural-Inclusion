@@ -1,39 +1,57 @@
 import express from 'express';
-import dotenv from 'dotenv';
 import cors from 'cors';
-import { connectDB } from './config/db.js';
+import dotenv from 'dotenv';
+import connectDB from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import beneficiaryRoutes from './routes/beneficiaryRoutes.js';
-import surveyRoutes from './routes/surveyRoutes.js';
 import fundRoutes from './routes/fundRoutes.js';
+import surveyRoutes from './routes/surveyRoutes.js';
+import analyticsRoutes from './routes/analyticsRoutes.js';
+import integrationRoutes from './routes/integrationRoutes.js';
 
 dotenv.config();
 
-// Set environment variables directly for now
-process.env.MONGO_URI = 'mongodb://localhost:27017/cultural-inclusion';
-process.env.PORT = '5002';
-process.env.JWT_SECRET = 'your-super-secret-jwt-key-for-hackathon';
-process.env.NODE_ENV = 'development';
+const app = express();
 
-// Debug: Check environment variables
-console.log('🔍 Environment Variables:');
-console.log('PORT:', process.env.PORT);
-console.log('MONGO_URI:', process.env.MONGO_URI ? 'Found' : 'Not found');
-console.log('NODE_ENV:', process.env.NODE_ENV);
-
+// Connect to MongoDB
 connectDB();
 
-const app = express();
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Sample routes (to add)
-app.get('/', (req, res) => res.send('API Running'));
-
+// Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/beneficiaries', beneficiaryRoutes);
-app.use('/api/surveys', surveyRoutes);
 app.use('/api/funds', fundRoutes);
+app.use('/api/surveys', surveyRoutes);
+app.use('/api/analytics', analyticsRoutes);
+app.use('/api/integrations', integrationRoutes);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.json({ 
+    status: 'OK', 
+    message: 'HEVA Cultural Inclusion API is running',
+    version: '4.0.0',
+    features: [
+      'Role-based access control',
+      'Advanced analytics & reporting',
+      'Mobile optimization',
+      'External API integrations',
+      'Data export capabilities',
+      'Real-time monitoring'
+    ],
+    timestamp: new Date().toISOString()
+  });
+});
+
+const PORT = process.env.PORT || 5002;
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`📊 HEVA Cultural Inclusion API v4.0.0 ready`);
+  console.log(`🔗 Health check: http://localhost:${PORT}/api/health`);
+  console.log(`📱 Mobile optimized with offline capabilities`);
+  console.log(`🔗 External integrations enabled`);
+});
